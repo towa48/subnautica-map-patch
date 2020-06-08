@@ -1,0 +1,4 @@
+﻿{
+	"mapId": "default_world", // all maps id default_world, default_biome, default_jellyshroom, default_lostriver, default_ilz, default_alz
+	"filepath": "example.png"
+}

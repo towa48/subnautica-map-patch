@@ -1,0 +1,10 @@
+﻿{
+  "Id": "SubnauticaMap",
+  "DisplayName": "SubnauticaMap",
+  "Author": "newman55",
+  "Version": "1.3.6",
+  "Enable": true,
+  "AssemblyName": "SubnauticaMap.dll",
+  "EntryMethod": "SubnauticaMap.QMod.Load",
+  "Config": { }
+}

@@ -1,0 +1,12 @@
+{
+    "fogStyle": 0,
+    "mapTransparency": 0.800000011920929,
+    "fogTransparency": 0.18708668649196626,
+    "iconsScale": 1.0,
+    "showCoordinates": true,
+    "showMapIcons": 7,
+    "showPingIcons": 511,
+    "scanningKeybinding": 325,
+    "mapKeybinding": 109,
+    "pingKeybinding": 110
+}
