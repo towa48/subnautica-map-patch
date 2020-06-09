@@ -1,2 +1,2 @@
-$msbuild = '"C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"'
+$msbuild = '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe"'
 iex ("& {0} {1}" -f $msbuild, ".\Source\SubnauticaMap\SubnauticaMap.csproj /t:Build /p:Configuration=""Release"" /p:Platform=""AnyCPU"" /p:BuildProjectReferences=false")

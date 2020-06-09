@@ -21,7 +21,7 @@ namespace SubnauticaMap
 			try
 			{
 				Texture2D texture2D = new Texture2D(2, 2, format, mipChain: false);
-				texture2D.LoadImage(File.ReadAllBytes(path));
+				texture2D.LoadRawTextureData(File.ReadAllBytes(path));
 				texture2D.wrapMode = TextureWrapMode.Clamp;
 				return texture2D;
 			}

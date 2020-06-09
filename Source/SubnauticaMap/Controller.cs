@@ -103,15 +103,17 @@ namespace SubnauticaMap
 
 		private static List<UnityEngine.Object> destroyOnUnload = new List<UnityEngine.Object>();
 
-		private string debugMessage1 = "";
+        private static string savesPath = Path.Combine(SNUtils.applicationRootDir, "SNAppData/SavedGames");
+
+        private string debugMessage1 = "";
 
 		private string debugMessage2 = "";
 
-		public static Settings Settings => settings;
+        public static Settings Settings => settings;
 
 		public static string Dir => $"{Environment.CurrentDirectory}\\QMods\\SubnauticaMap\\";
 
-		public static string SaveDir => Path.Combine(Path.Combine(SNUtils.get_appDataDir(), "SavedGames"), Utils.GetSavegameDir());
+		public static string SaveDir => Path.Combine(savesPath, SaveLoadManager.main.GetCurrentSlot());
 
 		public static Controller Instance
 		{
@@ -274,8 +276,7 @@ namespace SubnauticaMap
 			}
 			if (Settings.showCoordinates && mapContainer.activeSelf && CursorManager.lastRaycast.isValid && CursorManager.lastRaycast.gameObject.transform.IsChildOf(mapContainer.transform))
 			{
-				Vector2 a = default(Vector2);
-				RectTransformUtility.ScreenPointToLocalPointInRectangle(scrollView.content, (Vector2)Input.get_mousePosition(), CursorManager.lastRaycast.module.eventCamera, ref a);
+				RectTransformUtility.ScreenPointToLocalPointInRectangle(scrollView.content, (Vector2)Input.mousePosition, CursorManager.lastRaycast.module.eventCamera, out Vector2 a);
 				if (CurrentMap != null && CurrentMap.mapId == "default_biome")
 				{
 					Vector2 vector = a * mapScale;
@@ -288,7 +289,7 @@ namespace SubnauticaMap
 			}
 			bool buttonDown;
 			Vector2 uIDirection = GameInput.GetUIDirection(out buttonDown);
-			if (mapSwitchPanel.gameObject.activeSelf && ((Input.get_anyKeyDown() && !Input.GetKeyDown(KeyCode.JoystickButton0) && !Input.GetKeyDown(KeyCode.JoystickButton3) && CursorManager.lastRaycast.isValid && !CursorManager.lastRaycast.gameObject.transform.IsChildOf(mapSwitchPanel.transform) && !CursorManager.lastRaycast.gameObject.transform.IsChildOf(mapSwitcher.transform)) || GameInput.GetUIScrollDelta() != 0f || uIDirection != Vector2.zero))
+			if (mapSwitchPanel.gameObject.activeSelf && ((Input.anyKeyDown && !Input.GetKeyDown(KeyCode.JoystickButton0) && !Input.GetKeyDown(KeyCode.JoystickButton3) && CursorManager.lastRaycast.isValid && !CursorManager.lastRaycast.gameObject.transform.IsChildOf(mapSwitchPanel.transform) && !CursorManager.lastRaycast.gameObject.transform.IsChildOf(mapSwitcher.transform)) || GameInput.GetUIScrollDelta() != 0f || uIDirection != Vector2.zero))
 			{
 				mapSwitchPanel.gameObject.SetActive(value: false);
 			}
@@ -328,7 +329,7 @@ namespace SubnauticaMap
 				flag = (Input.GetKeyDown(KeyCode.JoystickButton2) && !mapContainer.activeSelf);
 				flag2 = (Input.GetKeyDown(KeyCode.JoystickButton2) && mapContainer.activeSelf);
 			}
-			float num3 = (Input.get_mouseScrollDelta().y != 0f) ? Input.get_mouseScrollDelta().y : (GameInput.GetControllerEnabled() ? (GameInput.GetUIScrollDelta() * 0.1f) : 0f);
+			float num3 = (Input.mouseScrollDelta.y != 0f) ? Input.mouseScrollDelta.y : (GameInput.GetControllerEnabled() ? (GameInput.GetUIScrollDelta() * 0.1f) : 0f);
 			if (num3 != 0f && ((CursorManager.lastRaycast.isValid && (CursorManager.lastRaycast.gameObject.transform.IsChildOf(scanPanel) || CursorManager.lastRaycast.gameObject.transform.IsChildOf(iconsContainer.transform))) || !mapContainer.gameObject.activeSelf))
 			{
 				num3 = 0f;
