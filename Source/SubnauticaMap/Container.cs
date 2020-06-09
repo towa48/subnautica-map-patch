@@ -1,4 +1,5 @@
 using UnityEngine;
+using WillRenderCanvases = UnityEngine.Canvas.WillRenderCanvases;
 
 namespace SubnauticaMap
 {
@@ -20,7 +21,7 @@ namespace SubnauticaMap
 				controller.CheckFogmapTexture();
 				controller.AlignToPlayer();
 			}
-			Canvas.add_willRenderCanvases((WillRenderCanvases)(object)new WillRenderCanvases(OnWillRenderCanvases));
+			Canvas.willRenderCanvases += OnWillRenderCanvases;
 			uGUI_Pings uGUI_Pings = Object.FindObjectOfType<uGUI_Pings>();
 			if ((bool)uGUI_Pings)
 			{
@@ -32,7 +33,7 @@ namespace SubnauticaMap
 		{
 			//IL_0007: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0011: Expected O, but got Unknown
-			Canvas.remove_willRenderCanvases((WillRenderCanvases)(object)new WillRenderCanvases(OnWillRenderCanvases));
+			Canvas.willRenderCanvases -= OnWillRenderCanvases;
 		}
 
 		private void OnWillRenderCanvases()
